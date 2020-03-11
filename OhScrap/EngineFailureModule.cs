@@ -9,13 +9,16 @@ namespace OhScrap
     class EngineFailureModule : BaseFailureModule
     {
         ModuleEngines engine;
-        double timeBetweenFailureEvents = 0;
-        [KSPField(isPersistant = true, guiActive = false)]
-        float staticThrust;
-        int fuelLineCounter = 5;
+        EngineModuleWrapper engineWrapper;
         ModuleGimbal gimbal;
+
+        double timeBetweenFailureEvents = 0;
+
+        int fuelLineCounter = 5;
+
         [KSPField(isPersistant = true, guiActive = false)]
-        float originalThrust;
+        float fuelFlowMultiplier = 1;
+
         [KSPField(isPersistant = true, guiActive = false)]
         int spaceEngineExpectedLifetime = 3;
         [KSPField(isPersistant = true, guiActive = false)]
@@ -26,7 +29,11 @@ namespace OhScrap
         {
             Fields["displayChance"].guiName = "Chance of Engine Failure";
             Fields["safetyRating"].guiName = "Engine Safety Rating";
+
             engine = part.FindModuleImplementing<ModuleEngines>();
+            engineWrapper = new EngineModuleWrapper();
+            engineWrapper.InitWithEngine(part, engine.engineID);
+
             gimbal = part.FindModuleImplementing<ModuleGimbal>();
             //If the ISP at sea level suggests this is a space engine, change the lifetime and failure rates accordingly
             float staticPressure = (float)(FlightGlobals.GetHomeBody().GetPressure(0) * PhysicsGlobals.KpaToAtmospheres);
@@ -58,7 +65,7 @@ namespace OhScrap
             //Randomly pick which failure we will give the player
             if (failureType == "none")
             {
-                int i = UPFMUtils.instance._randomiser.Next(1, 5);
+                int i = UPFMUtils.instance._randomiser.Next(1, 7);
                 switch (i)
                 {
                     case 1:
@@ -72,13 +79,20 @@ namespace OhScrap
                         break;
                     case 3:
                         failureType = "Underthrust";
-                        originalThrust = engine.thrustPercentage;
                         Debug.Log("[OhScrap]: attempted to perform Underthrust on " + SYP.ID);
                         break;
                     case 4:
                         if (gimbal == null) return;
                         failureType = "Gimbal Failure";
-                        Debug.Log("[OhScrap]: attempted to lock gimbal on" + SYP.ID);
+                        Debug.Log("[OhScrap]: attempted to lock gimbal on " + SYP.ID);
+                        break;
+                    case 5:
+                        failureType = "Stable Underthrust";
+                        Debug.Log("[OhScrap]: attempted to perform Stable Underthrust on " + SYP.ID);
+                        break;
+                    case 6:
+                        failureType = "Performance Loss";
+                        Debug.Log("[OhScrap]: attempted to perform Performance Loss on " + SYP.ID);
                         break;
                     default:
                         failureType = "none";
@@ -104,15 +118,22 @@ namespace OhScrap
                 case "Underthrust":
                     if (timeBetweenFailureEvents <= Planetarium.GetUniversalTime())
                     {
-                        engine.thrustPercentage = engine.thrustPercentage * 0.9f;
+                        fuelFlowMultiplier *= 0.9f;
                         timeBetweenFailureEvents = Planetarium.GetUniversalTime() + UPFMUtils.instance._randomiser.Next(10, 30);
-                        staticThrust = engine.thrustPercentage;
                     }
-                    engine.thrustPercentage = staticThrust;
+                    engineWrapper.SetFuelFlowMult(fuelFlowMultiplier);
                     break;
                  //lock gimbal
                 case "Gimbal Failure":
                     gimbal.gimbalLock = true;
+                    break;
+                // Engine permanently has 50% max thrust
+                case "Stable Underthrust":
+                    engineWrapper.SetFuelFlowMult(0.5f);
+                    break;
+                // Isp and thrust both set to 50% of normal
+                case "Performance Loss":
+                    engineWrapper.SetFuelIspMult(0.5f);
                     break;
                 default:
                     return;
@@ -128,7 +149,8 @@ namespace OhScrap
                     Debug.Log("[OhScrap]: Re-activated " + SYP.ID);
                     break;
                 case "Underthrust":
-                    engine.thrustPercentage = originalThrust;
+                case "Stable Underthrust":
+                    engineWrapper.SetFuelFlowMult(1f);
                     Debug.Log("[OhScrap]: Reset Thrust on " + SYP.ID);
                     break;
                 case "Gimbal Failure":
@@ -137,6 +159,10 @@ namespace OhScrap
                 case "Fuel Line Leak":
                     CancelInvoke("LeakFuel");
                     break;
+                case "Performance Loss":
+                    engineWrapper.SetFuelIspMult(1f);
+                    Debug.Log("[OhScrap]: Reset Isp on " + SYP.ID);
+                    break;
                 default:
                     return;
             }
@@ -144,7 +170,7 @@ namespace OhScrap
 
         void LeakFuel()
         {
-            part.RequestResource("LiquidFuel", 1.0f);
+            part.RequestResource("LiquidFuel", 1.0);
             ScreenMessages.PostScreenMessage("Fuel Line Leaking!");
         }
     }
