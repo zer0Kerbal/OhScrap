@@ -1,6 +1,6 @@
  # Oy Scrap! (formerly UPFM)
 ![Mod Version](https://img.shields.io/github/v/release/zer0Kerbal/OhScrap?include_prereleases?style=plastic)
-![KSP version](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/zer0Kerbal/OhScrap/master/json/ksp.json?style=plastic) ![KSP-AVC](https://img.shields.io/badge/KSP-AVC--supported-brightgreen.svg?style=plastic) [MIT-17x17.png](https://postimg.cc/21TKt0Vd)![License: MIT](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/zer0Kerbal/OhScrap/master/json/license.json?style=plastic)  
+![KSP version](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/zer0Kerbal/OhScrap/master/json/ksp.json?style=plastic) ![KSP-AVC](https://img.shields.io/badge/KSP-AVC--supported-brightgreen.svg?style=plastic) ![License: MIT](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/zer0Kerbal/OhScrap/master/json/license.json?style=plastic) ![MIT-17x17.png](https://i.postimg.cc/bvjfsMP5/MIT-17x17.png)   
 ![Spacedock](https://img.shields.io/badge/SpaceDock-listed-blue.svg?style=plastic) ![CKAN](https://img.shields.io/badge/CKAN-Indexed-blue.svg?style=plastic) ![Github](https://img.shields.io/badge/Github-Indexed-blue.svg?style=plastic) ![Curseforge](https://img.shields.io/badge/CurseForge-listed-blue.svg?style=plastic)
 
 > Poor Val, she's not having a good day. There she was on her way back from orbit, and this happened: 
@@ -87,4 +87,4 @@ A note to CKAN USERS:
 ### Original
 Download [Here](https://github.com/zer0Kerbal/OhScrap/releases/latest/)
 Source: [GitHub](https://github.com/zer0Kerbal/OhScrap/releases/latest/ "GitHub")
-License: [MIT-17x17.png](https://postimg.cc/21TKt0Vd) ![License: MIT](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/zer0Kerbal/OhScrap/master/json/license.json?style=plastic)  
+License: ![License: MIT](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/zer0Kerbal/OhScrap/master/json/license.json?style=plastic) ![MIT-17x17.png](https://i.postimg.cc/bvjfsMP5/MIT-17x17.png) 
