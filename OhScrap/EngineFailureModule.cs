@@ -150,6 +150,7 @@ namespace OhScrap
                     break;
                 case "Underthrust":
                 case "Stable Underthrust":
+                    fuelFlowMultiplier = 1f;
                     engineWrapper.SetFuelFlowMult(1f);
                     Debug.Log("[OhScrap]: Reset Thrust on " + SYP.ID);
                     break;
