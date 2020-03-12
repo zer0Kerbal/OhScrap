@@ -191,11 +191,24 @@ namespace OhScrap
                 {
                     //Engineers give a 10% bonus per level to repair rates
                     ProtoCrewMember p = FlightGlobals.ActiveVessel.GetVesselCrew().ElementAt(i);
-                    if(p.trait == "Engineer")
+                    for(int ii = 0; ii < p.experienceTrait.Effects.Count(); ii++)
+                        if  (p.experienceTrait.Effects[ii].Name == "FailureRepairSkill")
+                        {
+                            if (p.experienceTrait.Effects[ii].LevelModifiers.Length > 0)
+                            { 
+                                repairChance += p.experienceTrait.Effects[ii].LevelModifiers[p.experienceLevel];
+                                Debug.Log(String.Format("[OhScrap]: name {0) experiencetrait {1) level {2) modifier {3)", p.name, p.experienceTrait.ToString(), p.experienceLevel.ToString(), p.experienceTrait.Effects[ii].LevelModifiers[p.experienceLevel].ToString()));
+                            }
+                            else repairChance += p.experienceLevel * 0.1f;
+                            break;
+                    }
+                            //p.experienceTrait.Effects[ii].Level
+                   /* if (p.experienceTrait.Effects == "FailureRepairSkill")
+                    // if ((p.trait == "Engineer") || (p.trait == "Mechanic"))
                     {
                         repairChance += p.experienceLevel*0.1f;
                         break;
-                    }
+                    }*/
                 }
             }
             double roll = UPFMUtils.instance._randomiser.NextDouble();
