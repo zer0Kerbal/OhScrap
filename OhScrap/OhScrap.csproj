@@ -44,30 +44,30 @@
     <TransformOutOfDateOnly>false</TransformOutOfDateOnly>
   </PropertyGroup>
   <ItemGroup>
-    <!-- <Reference Include="C:\Games\KSP 1.9\GameData\ScrapYard\Plugins\ScrapYard.dll" /> -->
-    <Reference Include="C:\Games\KSP 1.9\KSP_x64_Data\Managed\Assembly-CSharp-firstpass.dll">
+    <!-- <Reference Include="$(DevDir19)\GameData\ScrapYard\Plugins\ScrapYard.dll" /> -->
+    <Reference Include="$(DevDir19)\KSP_x64_Data\Managed\Assembly-CSharp-firstpass.dll">
       <Private>False</Private>
     </Reference>
-    <Reference Include="C:\Games\KSP 1.9\KSP_x64_Data\Managed\Assembly-CSharp.dll">
+    <Reference Include="$(DevDir19)\KSP_x64_Data\Managed\Assembly-CSharp.dll">
       <Private>False</Private>
     </Reference>
-    <!-- <Reference Include="C:\Games\KSP 1.9\KSP_x64_Data\Managed\Assembly-CSharp-firstpass" /> -->
-    <Reference Include="C:\Games\KSP 1.9\KSP_x64_Data\Managed/UnityEngine.dll">
+    <!-- <Reference Include="$(DevDir19)\KSP_x64_Data\Managed\Assembly-CSharp-firstpass" /> -->
+    <Reference Include="$(DevDir19)\KSP_x64_Data\Managed/UnityEngine.dll">
       <Private>False</Private>
     </Reference>
-    <Reference Include="C:\Games\KSP 1.9\KSP_x64_Data\Managed/UnityEngine.AnimationModule.dll">
+    <Reference Include="$(DevDir19)\KSP_x64_Data\Managed/UnityEngine.AnimationModule.dll">
       <Private>False</Private>
     </Reference>
-    <Reference Include="C:\Games\KSP 1.9\KSP_x64_Data\Managed/UnityEngine.CoreModule.dll">
+    <Reference Include="$(DevDir19)\KSP_x64_Data\Managed/UnityEngine.CoreModule.dll">
       <Private>False</Private>
     </Reference>
-    <Reference Include="C:\Games\KSP 1.9\KSP_x64_Data\Managed/UnityEngine.IMGUIModule.dll">
+    <Reference Include="$(DevDir19)\KSP_x64_Data\Managed/UnityEngine.IMGUIModule.dll">
       <Private>False</Private>
     </Reference>
-    <Reference Include="C:\Games\KSP 1.9\KSP_x64_Data\Managed/UnityEngine.InputLegacyModule.dll">
+    <Reference Include="$(DevDir19)\KSP_x64_Data\Managed/UnityEngine.InputLegacyModule.dll">
       <Private>False</Private>
     </Reference>
-    <Reference Include="C:\Games\KSP 1.9\KSP_x64_Data\Managed/UnityEngine.UI.dll">
+    <Reference Include="$(DevDir19)\KSP_x64_Data\Managed/UnityEngine.UI.dll">
       <Private>False</Private>
     </Reference>
     <Reference Include="ScrapYard">
@@ -82,12 +82,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AlternatorFailureModule.cs" />
-    <Compile Include="AntennaFailureModule.cs" />
-    <Compile Include="FARControlSurfaceFailureModule.cs" />
-    <Compile Include="FARParachuteFailureModule.cs" />
-    <Compile Include="LandingGearFailureModule.cs" />
+    <Compile Include="KRASHWrapper.cs" />
+    <Compile Include="Logger.cs" />
     <Compile Include="ModWrapper.cs" />
+    <Compile Include="UPFMData.cs" />
+    <Compile Include="UPFMSettings.cs" />
+    <Compile Include="UPFMUtils.cs" />
+    <Compile Include="StageRecoveryWrapper.cs" />
+    <Compile Include="StageRecoveryHandler.cs" />
+    <Compile Include="ModuleUPFMEvents.cs" />
+    <Compile Include="FailureModules\AlternatorFailureModule.cs" />
+    <Compile Include="FailureModules\AntennaFailureModule.cs" />
+    <Compile Include="FailureModules\FARControlSurfaceFailureModule.cs" />
+    <Compile Include="FailureModules\FARParachuteFailureModule.cs" />
+    <Compile Include="FailureModules\LandingGearFailureModule.cs" />
+    <Compile Include="FailureModules\EngineModuleWrapper.cs" />
+    <Compile Include="FailureModules\RTAntennaFailureModule.cs" />
+    <Compile Include="FailureModules\BaseFailureModule.cs" />
+    <Compile Include="FailureModules\BatteryFailureModule.cs" />
+    <Compile Include="FailureModules\ControlSurfaceFailureModule.cs" />
+    <Compile Include="FailureModules\EngineFailureModule.cs" />
+    <Compile Include="FailureModules\ParachuteFailureModule.cs" />
+    <Compile Include="FailureModules\RCSFailureModule.cs" />
+    <Compile Include="FailureModules\ReactionWheelFailureModule.cs" />
+    <Compile Include="FailureModules\SolarPanelFailureModule.cs" />
+    <Compile Include="FailureModules\TankFailureModule.cs" />
+    <Compile Include="FailureModules\SRBFailureModule.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\AssemblyVersion.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -98,26 +119,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Version.tt</DependentUpon>
     </Compile>
-    <Compile Include="RTAntennaFailureModule.cs" />
-    <Compile Include="BaseFailureModule.cs" />
-    <Compile Include="BatteryFailureModule.cs" />
-    <Compile Include="ControlSurfaceFailureModule.cs" />
-    <Compile Include="EngineFailureModule.cs" />
-    <Compile Include="KRASHWrapper.cs" />
-    <Compile Include="Logger.cs" />
-    <Compile Include="ModuleUPFMEvents.cs" />
-    <Compile Include="ParachuteFailureModule.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RCSFailureModule.cs" />
-    <Compile Include="ReactionWheelFailureModule.cs" />
-    <Compile Include="SolarPanelFailureModule.cs" />
-    <Compile Include="SRBFailureModule.cs" />
-    <Compile Include="TankFailureModule.cs" />
-    <Compile Include="UPFMData.cs" />
-    <Compile Include="UPFMSettings.cs" />
-    <Compile Include="UPFMUtils.cs" />
-    <Compile Include="StageRecoveryWrapper.cs" />
-    <Compile Include="StageRecoveryHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\AssemblyVersion.tt">

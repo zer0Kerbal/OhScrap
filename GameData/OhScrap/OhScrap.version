@@ -1,8 +1,8 @@
 {
-    "NAME"          : "Oh Scrap",
-    "URL"           : "https://github.com/zer0Kerbal/OhScrap/raw/master/OhScrap.version",
+    "NAME"          : "Oh Scrap!",
+    "URL"           : "https://raw.githubusercontent.com/zer0Kerbal/OhScrap/master/OhScrap.version",
     "DOWNLOAD"      : "https://github.com/zer0Kerbal/OhScrap/releases/latest/",
-    "CHANGE_LOG_URL": "https://github.com/zer0Kerbal/OhScrap/raw/master/Changelog.cfg",
+    "CHANGE_LOG_URL": "https://raw,githubusercontent.com/zer0Kerbal/OhScrap/master/Changelog.cfg",
     "GITHUB" :
     {
         "USERNAME"         : "zer0Kerbal",
@@ -13,7 +13,7 @@
     {
         "MAJOR" : 2,
         "MINOR" : 1,
-        "PATCH" : 0,
+        "PATCH" : 1,
         "BUILD" : 0
     },
     "KSP_VERSION" :
