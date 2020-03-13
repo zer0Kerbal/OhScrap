@@ -62,52 +62,63 @@ namespace OhScrap
         }
     }
 
-    internal class RealFuelsEngine : EngineModuleIfc
+    internal abstract class AbstractEngine
     {
-        private static readonly string MODULENAME = "ModuleEnginesRF";
-        private readonly Part part;
-        private readonly ModuleEngines e;
+        protected readonly Part part;
+        protected readonly ModuleEngines e;
 
-        public RealFuelsEngine(Part part, ModuleEngines e)
+        protected readonly float minFuelFlow;
+        protected readonly float maxFuelFlow;
+        protected readonly float g;
+
+        internal AbstractEngine(Part part, ModuleEngines e)
         {
             this.part = part;
             this.e = e;
-            Log.Info("{0} found on part {1}, engine {2}! Add'On may not behave as intended...", MODULENAME, part.name, e.name);
+
+            this.minFuelFlow = this.e.minFuelFlow;
+            this.maxFuelFlow = this.e.maxFuelFlow;
+            this.g = this.e.g;
         }
 
+    }
+
+    internal class RealFuelsEngine : AbstractEngine, EngineModuleIfc
+    {
+        private static readonly string MODULENAME = "ModuleEnginesRF";
         internal static bool IsCompatible(ModuleEngines engine)
         {
             return MODULENAME.Equals(engine.GetType().Name);
         }
 
+        internal RealFuelsEngine(Part part, ModuleEngines engine) : base(part, engine)
+        {
+            Log.Info("{0} found on part {1}, engine {2}! Add'On may not behave as intended...", MODULENAME, part.name, e.name);
+        }
+
         void EngineModuleIfc.SetFuelFlowMult(float v)
         {
-            this.e.minFuelFlow *= v;
-            this.e.maxFuelFlow *= v;
+            this.e.minFuelFlow = this.minFuelFlow * v;
+            this.e.maxFuelFlow *= this.maxFuelFlow * v;
         }
 
         void EngineModuleIfc.SetFuelIspMult(float v)
         {
-            this.e.g *= v;
+            this.e.g = this.g * v;
         }
     }
 
-    internal class SolverEngine : EngineModuleIfc
+    internal class SolverEngine : AbstractEngine, EngineModuleIfc
     {
         private static readonly string MODULENAME = "ModuleEnginesAJE";
-        private readonly Part part;
-        private readonly ModuleEngines e;
-
-        public SolverEngine(Part part, ModuleEngines e)
-        {
-            this.part = part;
-            this.e = e;
-            Log.Info("{0} found on part {1}, engine {2}! Add'On may not behave as intended...", MODULENAME, part.name, e.name);
-        }
-
         internal static bool IsCompatible(ModuleEngines engine)
         {
             return engine.GetType().Name.Contains(MODULENAME);
+        }
+
+        internal SolverEngine(Part part, ModuleEngines engine) : base(part, engine)
+        {
+            Log.Info("{0} found on part {1}, engine {2}! Add'On may not behave as intended...", MODULENAME, part.name, e.name);
         }
 
         void EngineModuleIfc.SetFuelFlowMult(float v)
@@ -121,27 +132,22 @@ namespace OhScrap
         }
     }
 
-    internal class StockEngine : EngineModuleIfc
+    internal class StockEngine : AbstractEngine, EngineModuleIfc
     {
-        private readonly Part part;
-        private readonly ModuleEngines e;
-
-        public StockEngine(Part part, ModuleEngines e)
+        StockEngine(Part part, ModuleEngines engine) : base(part, engine)
         {
-            this.part = part;
-            this.e = e;
             Log.Info("Stock Engine found on part {0}, engine {1}! Add'On may not behave as intended...", part.name, e.name);
         }
 
         void EngineModuleIfc.SetFuelFlowMult(float v)
         {
-            this.e.minFuelFlow *= v;
-            this.e.maxFuelFlow *= v;
+            this.e.minFuelFlow = this.minFuelFlow * v;
+            this.e.maxFuelFlow *= this.maxFuelFlow * v;
         }
 
         void EngineModuleIfc.SetFuelIspMult(float v)
         {
-            this.e.g *= v;
+            this.e.g = this.g * v;
         }
     }
 
