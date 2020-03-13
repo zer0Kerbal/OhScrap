@@ -99,7 +99,7 @@ namespace OhScrap
         void EngineModuleIfc.SetFuelFlowMult(float v)
         {
             this.e.minFuelFlow = this.minFuelFlow * v;
-            this.e.maxFuelFlow *= this.maxFuelFlow * v;
+            this.e.maxFuelFlow = this.maxFuelFlow * v;
         }
 
         void EngineModuleIfc.SetFuelIspMult(float v)
@@ -142,7 +142,7 @@ namespace OhScrap
         void EngineModuleIfc.SetFuelFlowMult(float v)
         {
             this.e.minFuelFlow = this.minFuelFlow * v;
-            this.e.maxFuelFlow *= this.maxFuelFlow * v;
+            this.e.maxFuelFlow = this.maxFuelFlow * v;
         }
 
         void EngineModuleIfc.SetFuelIspMult(float v)
