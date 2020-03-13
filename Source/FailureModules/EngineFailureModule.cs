@@ -9,7 +9,7 @@ namespace OhScrap
     class EngineFailureModule : BaseFailureModule
     {
         ModuleEngines engine;
-        EngineModuleWrapper engineWrapper;
+        EngineModuleIfc engineWrapper;
         ModuleGimbal gimbal;
 
         double timeBetweenFailureEvents = 0;
@@ -31,8 +31,7 @@ namespace OhScrap
             Fields["safetyRating"].guiName = "Engine Safety Rating";
 
             engine = part.FindModuleImplementing<ModuleEngines>();
-            engineWrapper = new EngineModuleWrapper();
-            engineWrapper.InitWithEngine(part, engine.engineID);
+            engineWrapper = EngineModuleWrapper.getInstance(part, engine.engineID);
 
             gimbal = part.FindModuleImplementing<ModuleGimbal>();
             //If the ISP at sea level suggests this is a space engine, change the lifetime and failure rates accordingly

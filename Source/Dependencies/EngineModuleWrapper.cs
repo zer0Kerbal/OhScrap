@@ -25,21 +25,161 @@ using System;
 
 namespace OhScrap
 {
-    internal class EngineModuleWrapper
+    internal static class Log
     {
-        internal void InitWithEngine(Part part, string engineID)
+        public static void Info(string msg, params object[] @params)
         {
-            throw new NotImplementedException();
+            UnityEngine.Debug.LogErrorFormat("[EngineModuleWrapper] INFO: " + msg, @params);
         }
 
-        internal void SetFuelFlowMult(float v)
+        public static void Error(string msg, params object[] @params)
         {
-            throw new NotImplementedException();
-        }
-
-        internal void SetFuelIspMult(float v)
-        {
-            throw new NotImplementedException();
+            UnityEngine.Debug.LogErrorFormat("[EngineModuleWrapper] ERROR: " + msg, @params);
         }
     }
+
+    internal interface EngineModuleIfc
+    {
+        void SetFuelFlowMult(float v);
+        void SetFuelIspMult(float v);
+    }
+
+    internal class UnknownEngine : EngineModuleIfc
+    {
+        internal UnknownEngine(Part part)
+        {
+            Log.Error("No suitable module found on part {0}! Add'On may not behave as intended...", part.name);
+        }
+
+        void EngineModuleIfc.SetFuelFlowMult(float v)
+        {
+            return;
+        }
+
+        void EngineModuleIfc.SetFuelIspMult(float v)
+        {
+            return;
+        }
+    }
+
+    internal class RealFuelsEngine : EngineModuleIfc
+    {
+        private static readonly string MODULENAME = "ModuleEnginesRF";
+        private readonly Part part;
+        private readonly ModuleEngines e;
+
+        public RealFuelsEngine(Part part, ModuleEngines e)
+        {
+            this.part = part;
+            this.e = e;
+            Log.Info("{0} found on part {1}, engine {2}! Add'On may not behave as intended...", MODULENAME, part.name, e.name);
+        }
+
+        internal static bool IsCompatible(ModuleEngines engine)
+        {
+            return MODULENAME.Equals(engine.GetType().Name);
+        }
+
+        void EngineModuleIfc.SetFuelFlowMult(float v)
+        {
+            this.e.minFuelFlow *= v;
+            this.e.maxFuelFlow *= v;
+        }
+
+        void EngineModuleIfc.SetFuelIspMult(float v)
+        {
+            this.e.g *= v;
+        }
+    }
+
+    internal class SolverEngine : EngineModuleIfc
+    {
+        private static readonly string MODULENAME = "ModuleEnginesAJE";
+        private readonly Part part;
+        private readonly ModuleEngines e;
+
+        public SolverEngine(Part part, ModuleEngines e)
+        {
+            this.part = part;
+            this.e = e;
+            Log.Info("{0} found on part {1}, engine {2}! Add'On may not behave as intended...", MODULENAME, part.name, e.name);
+        }
+
+        internal static bool IsCompatible(ModuleEngines engine)
+        {
+            return engine.GetType().Name.Contains(MODULENAME);
+        }
+
+        void EngineModuleIfc.SetFuelFlowMult(float v)
+        {
+            this.e.GetType().GetField("flowMult").SetValue(this.e, v);
+        }
+
+        void EngineModuleIfc.SetFuelIspMult(float v)
+        {
+            this.e.GetType().GetField("ispMult").SetValue(this.e, v);
+        }
+    }
+
+    internal class StockEngine : EngineModuleIfc
+    {
+        private readonly Part part;
+        private readonly ModuleEngines e;
+
+        public StockEngine(Part part, ModuleEngines e)
+        {
+            this.part = part;
+            this.e = e;
+            Log.Info("Stock Engine found on part {0}, engine {1}! Add'On may not behave as intended...", part.name, e.name);
+        }
+
+        void EngineModuleIfc.SetFuelFlowMult(float v)
+        {
+            this.e.minFuelFlow *= v;
+            this.e.maxFuelFlow *= v;
+        }
+
+        void EngineModuleIfc.SetFuelIspMult(float v)
+        {
+            this.e.g *= v;
+        }
+    }
+
+    internal class EngineModuleWrapper : EngineModuleIfc
+    {
+        private readonly Part myPart;
+        private readonly EngineModuleIfc engine = null;
+
+        internal static EngineModuleIfc getInstance(Part part, string engineID)
+        {
+            foreach (PartModule pm in part.Modules)
+            {
+                ModuleEngines e = pm as ModuleEngines;
+                if (null == e) break;
+                if (string.IsNullOrEmpty(engineID) || engineID.ToLowerInvariant() == e.engineID.ToLowerInvariant())
+                {
+                    if (RealFuelsEngine.IsCompatible(e))    return new EngineModuleWrapper(part, new RealFuelsEngine(part, e));
+                    if (SolverEngine.IsCompatible(e))       return new EngineModuleWrapper(part, new SolverEngine(part, e));
+                }
+            }
+            return new EngineModuleWrapper(part, new UnknownEngine(part));
+        }
+
+        private EngineModuleWrapper(Part myPart, EngineModuleIfc engine)
+        {
+            this.myPart = myPart;
+            this.engine = engine;
+        }
+
+        void EngineModuleIfc.SetFuelFlowMult(float v)
+        {
+            this.engine.SetFuelFlowMult(v);
+        }
+
+        void EngineModuleIfc.SetFuelIspMult(float v)
+        {
+            this.engine.SetFuelIspMult(v);
+        }
+    }
+
 }
