@@ -44,7 +44,6 @@ Features
 > - Kerbal Changelog is not a hard dependency, in that "Oh Scrap will load just fine without it".
 > - However, on CKAN it is a dependency.
 > - When I make a serious save / mod breaking change, CKAN will happily update you without you ever seeing a changelog. This means you could happily load your save, not notice the major version number has changed, and seriously break something. I do not like this. So CKAN users must use Kerbal Changelog, because that way nobody can say they weren't warned :).
-# ![](https://i.imgur.com/OO5d907.png)![](https://i.imgur.com/OO5d907.png)
 
  What mods are:
 ### Changelog Summary
@@ -56,13 +55,12 @@ Features
 
 ### Depends:
 - [Module Manager](https://forum.kerbalspaceprogram.com/index.php?/topic/50533-*) is required if you want the mod to actually do anything. (obtained separately)
-- []()
 
 ### Recomends:
 - [Kerbal Changelog](https://forum.kerbalspaceprogram.com/index.php?/topic/179207-*)
 - [Kerbal Construction Time](https://forum.kerbalspaceprogram.com/index.php?/topic/182877-*) designed with this with in mind, so would recommend that mod (make sure you use the latest dev version)
 - [StageRecovery](https://forum.kerbalspaceprogram.com/index.php?/topic/179306-*) If you plan to actually re-use your parts (and have them fail), you'll probably want StageRecovery too
-- [KRASH](http://forum.kerbalspaceprogram.com/index.php?/topic/133082-*
+- [KRASH](http://forum.kerbalspaceprogram.com/index.php?/topic/133082-*}
 
 ### Suggests:
 - [FAR](https://forum.kerbalspaceprogram.com/index.php?/topic/179445-*)
@@ -114,7 +112,7 @@ License: ![License: MIT](https://img.shields.io/endpoint?url=https://raw.githubu
 
  *Be Kind: Lithobrake, not jakebrake! Keep your Module Manager up to date*
 
- ###### v1.0.1.0 original: 01 Oct 2019 zed'K | updated: 12 Mar 2020 zed'K
+ ###### v2.0.1.0 original: 01 Oct 2019 zed'K | updated: 12 Mar 2020 zed'K
 <!--
-this fie: CC BY-NC-SA-3.0
+this file: CC BY-NC-SA-3.0
 zer0Kerbal-->
