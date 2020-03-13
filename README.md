@@ -44,8 +44,7 @@ Features
 > - Kerbal Changelog is not a hard dependency, in that "Oh Scrap will load just fine without it".
 > - However, on CKAN it is a dependency.
 > - When I make a serious save / mod breaking change, CKAN will happily update you without you ever seeing a changelog. This means you could happily load your save, not notice the major version number has changed, and seriously break something. I do not like this. So CKAN users must use Kerbal Changelog, because that way nobody can say they weren't warned :).
-
-![](https://i.imgur.com/OO5d907.png)
+# ![](https://i.imgur.com/OO5d907.png)![](https://i.imgur.com/OO5d907.png)
 
  What mods are:
 ### Changelog Summary
@@ -94,18 +93,20 @@ zer0Kerbal's Stuff
 
 <a href="https://forum.kerbalspaceprogram.com/index.php?/topic/83212-*" target="_blank"><img src="https://i.imgur.com/YdYfStN.jpg"/></a>
 
-### Original
-Download [Here](https://github.com/zer0Kerbal/OhScrap/releases/latest/)  
-Source: [GitHub](https://github.com/zer0Kerbal/OhScrap/releases/latest/ "GitHub")  
-License: ![License: MIT](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/zer0Kerbal/OhScrap/master/json/license.json?style=plastic) ![MIT-17x17.png](https://i.postimg.cc/bvjfsMP5/MIT-17x17.png) 
-
 ### License
 #### aka Legal Mumbo Jumbo
-Source: [GitHub](https://github.com/zer0Kerbal/OhScrap)
+Source: [GitHub](https://github.com/zer0Kerbal/OhScrap)  
 License: ![License: MIT](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/zer0Kerbal/OhScrap/master/json/license.json?style=plastic) ![MIT-17x17.png](https://i.postimg.cc/bvjfsMP5/MIT-17x17.png)<br>
 
 - ***All bundled mods are distributed under their own licenses***<br>
 - ***All art assets (textures, models, animations) are distributed under their own licenses*** 
+
+### Original
+Download [Here](https://github.com/zer0Kerbal/OhScrap/releases/latest/)  
+Source: [GitHub](https://github.com/zer0Kerbal/OhScrap/releases/latest/ "GitHub")  
+License: ![License: MIT](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/zer0Kerbal/OhScrap/master/json/license.json?style=plastic) ![MIT-17x17.png](https://i.postimg.cc/bvjfsMP5/MIT-17x17.png)  
+
+***
 
 <a href="https://github.com/zer0Kerbal/OhScrap/releases/latest" target="_blank"><img src="https://i.imgur.com/RE4Ppr9.png"/></a>
 <a href="https://spacedock.info/mod/2364" target="_blank"><img src="https://i.imgur.com/m0a7tn2.png"/></a>
