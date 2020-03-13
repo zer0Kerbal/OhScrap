@@ -85,6 +85,6 @@ A note to CKAN USERS:
 ![Validate AVC .version files](https://github.com/zer0Kerbal/OhScrap/workflows/Validate%20AVC%20.version%20files/badge.svg)
 
 ### Original
-Download [Here](https://github.com/zer0Kerbal/OhScrap/releases/latest/)
-Source: [GitHub](https://github.com/zer0Kerbal/OhScrap/releases/latest/ "GitHub")
+Download [Here](https://github.com/zer0Kerbal/OhScrap/releases/latest/)  
+Source: [GitHub](https://github.com/zer0Kerbal/OhScrap/releases/latest/ "GitHub")  
 License: ![License: MIT](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/zer0Kerbal/OhScrap/master/json/license.json?style=plastic) ![MIT-17x17.png](https://i.postimg.cc/bvjfsMP5/MIT-17x17.png) 
