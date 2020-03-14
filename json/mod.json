@@ -1,6 +1,8 @@
 {
   "schemaVersion": 1,
   "label": "OhScrap",
+  "labelColor": "darkgreen",
   "message": "2.1.0.0",
-  "color": "orange"
+  "color": "orange",
+  "style": "plastic"
 }
