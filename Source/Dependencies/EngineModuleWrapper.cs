@@ -22,6 +22,7 @@
 
 */
 using System;
+using System.Diagnostics;
 
 namespace OhScrap
 {
@@ -29,7 +30,13 @@ namespace OhScrap
     {
         public static void Info(string msg, params object[] @params)
         {
-            UnityEngine.Debug.LogErrorFormat("[EngineModuleWrapper] INFO: " + msg, @params);
+            UnityEngine.Debug.LogFormat("[EngineModuleWrapper] INFO: " + msg, @params);
+        }
+
+        [Conditional("DEBUG")]
+        public static void Debug(string msg, params object[] @params)
+        {
+            UnityEngine.Debug.LogFormat("[EngineModuleWrapper] DEBUG: " + msg, @params);
         }
 
         public static void Error(string msg, params object[] @params)
@@ -118,7 +125,7 @@ namespace OhScrap
 
         internal SolverEngine(Part part, ModuleEngines engine) : base(part, engine)
         {
-            Log.Info("{0} found on part {1}, engine {2}! Add'On may not behave as intended...", MODULENAME, part.name, e.name);
+            Log.Info("{0} found on part {1}, engine {2}!", MODULENAME, part.name, e.name);
         }
 
         void EngineModuleIfc.SetFuelFlowMult(float v)
@@ -136,7 +143,7 @@ namespace OhScrap
     {
         StockEngine(Part part, ModuleEngines engine) : base(part, engine)
         {
-            Log.Info("Stock Engine found on part {0}, engine {1}! Add'On may not behave as intended...", part.name, e.name);
+            Log.Info("Stock Engine found on part {0}, engine {1}!", part.name, e.name);
         }
 
         void EngineModuleIfc.SetFuelFlowMult(float v)
@@ -175,15 +182,18 @@ namespace OhScrap
         {
             this.myPart = myPart;
             this.engine = engine;
+            Log.Debug("Instantiated for {0}", this.myPart.name);
         }
 
         void EngineModuleIfc.SetFuelFlowMult(float v)
         {
+            Log.Debug("SetFuelFlowMult for {0}", this.myPart.name);
             this.engine.SetFuelFlowMult(v);
         }
 
         void EngineModuleIfc.SetFuelIspMult(float v)
         {
+            Log.Debug("SetFuelIspMult for {0}", this.myPart.name);
             this.engine.SetFuelIspMult(v);
         }
     }
