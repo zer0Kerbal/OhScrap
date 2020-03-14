@@ -141,7 +141,7 @@ namespace OhScrap
 
     internal class StockEngine : AbstractEngine, EngineModuleIfc
     {
-        StockEngine(Part part, ModuleEngines engine) : base(part, engine)
+        internal StockEngine(Part part, ModuleEngines engine) : base(part, engine)
         {
             Log.Info("Stock Engine found on part {0}, engine {1}!", part.name, e.name);
         }
@@ -167,13 +167,15 @@ namespace OhScrap
         {
             foreach (PartModule pm in part.Modules)
             {
+                Log.Debug("Checking {0}, engine {1}!", part.name, pm.name);
+                if (!(pm is ModuleEngines)) continue;
                 ModuleEngines e = pm as ModuleEngines;
-                if (null == e) break;
                 if (string.IsNullOrEmpty(engineID) || engineID.ToLowerInvariant() == e.engineID.ToLowerInvariant())
                 {
                     if (RealFuelsEngine.IsCompatible(e))    return new EngineModuleWrapper(part, new RealFuelsEngine(part, e));
                     if (SolverEngine.IsCompatible(e))       return new EngineModuleWrapper(part, new SolverEngine(part, e));
                 }
+                return new EngineModuleWrapper(part, new StockEngine(part, pm as ModuleEngines));
             }
             return new EngineModuleWrapper(part, new UnknownEngine(part));
         }
