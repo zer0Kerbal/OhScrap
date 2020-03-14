@@ -149,7 +149,7 @@
     <!-- "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\texttransform.exe"  --><!-- "$(ProjectDir)Properties\AssemblyFileVersion.tt" --></PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>start /D $(ProjectDir)..\  /WAIT deploy.bat  $(TargetDir) $(TargetFileName)
-if $(ConfigurationName) == Release start /D $(ProjectDir)..\   /WAIT buildRelease.bat $(TargetDir) $(TargetFileName)</PostBuildEvent>
+    <PostBuildEvent>start /D $(ProjectDir)..\  /WAIT _deploy.bat  $(TargetDir) $(TargetFileName)
+if $(ConfigurationName) == Release start /D $(ProjectDir)..\   /WAIT _buildRelease.bat $(TargetDir) $(TargetFileName)</PostBuildEvent>
   </PropertyGroup>
 </Project>
