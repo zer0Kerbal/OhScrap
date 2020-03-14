@@ -1,12 +1,12 @@
 <!-- Readme.md v1.0.0.2
-Oy Scrap! (formerly UPFM)
+Oy Scrap! OHS) (formerly UPFM)
 created: 01 Oct 19
 updated: 2020 03 12 -->
 <!-- # KerbGuise Experimental engineering (KGEx)
 #### Brings you: -->
 <!-- Download on SpaceDock or Github or Curseforge. Also available on CKAN. -->
 
-# Oy Scrap! (formerly UPFM)
+# Oy Scrap! (OHS) (formerly UPFM)
 ![Mod Version](https://img.shields.io/github/v/release/zer0Kerbal/OhScrap?include_prereleases?style=plastic)
 ![KSP version](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/zer0Kerbal/OhScrap/master/json/ksp.json?style=plastic) ![KSP-AVC](https://img.shields.io/badge/KSP-AVC--supported-brightgreen.svg?style=plastic) ![License: MIT](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/zer0Kerbal/OhScrap/master/json/license.json?style=plastic) ![MIT-17x17.png](https://i.postimg.cc/bvjfsMP5/MIT-17x17.png)   
 ![Spacedock](https://img.shields.io/badge/SpaceDock-listed-blue.svg?style=plastic) ![CKAN](https://img.shields.io/badge/CKAN-Indexed-blue.svg?style=plastic) ![Github](https://img.shields.io/badge/Github-Indexed-blue.svg?style=plastic) ![Curseforge](https://img.shields.io/badge/CurseForge-listed-blue.svg?style=plastic)
@@ -114,5 +114,5 @@ License: ![License: MIT](https://img.shields.io/endpoint?url=https://raw.githubu
 
  ###### v2.0.1.0 original: 01 Oct 2019 zed'K | updated: 12 Mar 2020 zed'K
 <!--
-this file: CC BY-NC-SA-3.0
+this file: GPLv2
 zer0Kerbal-->
