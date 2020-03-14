@@ -1,4 +1,4 @@
-<!-- Readme.md v1.0.0.2
+<!-- Readme.md v1.0.1.0
 Oy Scrap! OHS) (formerly UPFM)
 created: 01 Oct 19
 updated: 2020 03 12 -->
@@ -7,15 +7,13 @@ updated: 2020 03 12 -->
 <!-- Download on SpaceDock or Github or Curseforge. Also available on CKAN. -->
 
 # Oy Scrap! (OHS) (formerly UPFM)
-![Mod Version](https://img.shields.io/github/v/release/zer0Kerbal/OhScrap?include_prereleases?style=plastic)
-![KSP version](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/zer0Kerbal/OhScrap/master/json/ksp.json?style=plastic) ![KSP-AVC](https://img.shields.io/badge/KSP-AVC--supported-brightgreen.svg?style=plastic) ![License: MIT](https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/zer0Kerbal/OhScrap/master/json/license.json?style=plastic) ![MIT-17x17.png](https://i.postimg.cc/bvjfsMP5/MIT-17x17.png)   
-![Spacedock](https://img.shields.io/badge/SpaceDock-listed-blue.svg?style=plastic) ![CKAN](https://img.shields.io/badge/CKAN-Indexed-blue.svg?style=plastic) ![Github](https://img.shields.io/badge/Github-Indexed-blue.svg?style=plastic) ![Curseforge](https://img.shields.io/badge/CurseForge-listed-blue.svg?style=plastic)
-  
-![Validate AVC .version files](https://github.com/zer0Kerbal/OhScrap/workflows/Validate%20AVC%20.version%20files/badge.svg)  
+![Mod Version][SHIELD:mod:latest] ![KSP version][SHIELD:ksp] ![KSP-AVC][SHIELD:kspavc] ![License MIT][SHIELD:license] ![LOGO:mit]  
+![SpaceDock][SHIELD:spacedock] ![CKAN][SHIELD:ckan] ![GitHub][SHIELD:github] ![Curseforge][SHIELD:curseforge]  
+![Validate AVC .version files][SHIELD:avcvalid]   
   
 > Poor Val, she's not having a good day. There she was on her way back from orbit, and this happened: 
 >
-> ![A bad day for Val](https://i.imgur.com/2V0F5DT.png)
+> ![A bad day for Val][IMG:hero:0]  
 
 > You see, I forgot to take her shiny new ship for a test flight before sending it to space, so the reaction wheels failed. Then her oxygen started venting into space. So she quickly burned retrograde and started her re-entry. Except that as she came into land, the parachute failed too. Like I said, not a good day.
 
@@ -28,13 +26,14 @@ Features
 - Subsequent "new models" of parts become more reliable than their earlier counterparts. Ie, a part you've just researched is more likely to fail than a part that has been tried and tested many times - even if it's brand new.
 - Repairs - some parts can be repaired remotely, some need an EVA. You always have a better chance of repairing a part on EVA
 
-### Eye candy of a really awesome Static Test that someone set up on facebook (used with permission):
-![](https://i.imgur.com/eWRLoBR.jpg)
-![](https://i.imgur.com/EyWm9e9.jpg)
+### Eye candy of a really awesome Static Test that someone set up on facebook
+####(used with permission):
+![][IMG:hero:1]  
+![][IMG:hero:2]  
 
 ### Special Thanks
-- [@magico13](https://forum.kerbalspaceprogram.com/index.php?/profile/73338-magico13/) both for ScrapYard, and helping me with all my questions issues while making this.
-- [@severedsolo](https://forum.kerbalspaceprogram.com/index.php?/profile/80345-severedsolo/)
+- [@magico13][LINK:magico13] both for ScrapYard, and helping [me] with all my questions issues while making this.
+- [@severedsolo][LINK:severedsolo]
 - The maintainers/authors of DangIt - most of this would never have happened without looking at your code to figure out how to make stuff work.
 
 #### Installation Directions:
@@ -45,9 +44,8 @@ Features
 > - However, on CKAN it is a dependency.
 > - When I make a serious save / mod breaking change, CKAN will happily update you without you ever seeing a changelog. This means you could happily load your save, not notice the major version number has changed, and seriously break something. I do not like this. So CKAN users must use Kerbal Changelog, because that way nobody can say they weren't warned :).
 
- What mods are:
 ### Changelog Summary
-*See ![ChangeLog](https://github.com/zer0Kerbal/OhScrap/Changelog.cfg) for full details of mod changes*
+*See [ChangeLog][MOD:changelog] for full details of mod changes*
 
 ### Requires:
 - [Kerbal Space Program](https://kerbalspaceprogram.com) v1.9.1, ***may*** work on earlier versions (YMMV)
@@ -110,9 +108,42 @@ License: ![License: MIT](https://img.shields.io/endpoint?url=https://raw.githubu
 <a href="https://spacedock.info/mod/2364" target="_blank"><img src="https://i.imgur.com/m0a7tn2.png"/></a>
 <a href="https://www.curseforge.com/kerbal/ksp-mods/ohscrap" target="_blank"><img src="https://i.postimg.cc/RZNyB5vP/Download-On-Curse.png"/></a>
 
- *Be Kind: Lithobrake, not jakebrake! Keep your Module Manager up to date*
+*Be Kind: Lithobrake, not jakebrake! Keep your Module Manager up to date*
 
- ###### v2.0.1.0 original: 01 Oct 2019 zed'K | updated: 12 Mar 2020 zed'K
+###### v2.0.1.0 original: 01 Oct 2019 zed'K | updated: 12 Mar 2020 zed'K
+
+[MOD:license]:         https://github.com/zer0Kerbal/OhScrap/blob/master/LICENSE
+[MOD:contributing]:    https://github.com/zer0Kerbal/OhScrap/blob/master/.github/CONTRIBUTING.md
+[MOD:issues]:          https://github.com/zer0Kerbal/OhScrap/issues
+[MOD:wiki]:            https://github.com/zer0Kerbal/OhScrap/
+[MOD:known]:           https://github.com/zer0Kerbal/OhScrap/wiki/Known-Issues
+[MOD:forum]:           https://forum.kerbalspaceprogram.com/index.php?/topic/178641-*
+[MOD:spacedock]:       https://spacedock.info/mod/2364
+[MOD:github:repo]:     https://github.com/zer0Kerbal/OhScrap/
+[MOD:github:releases]: https://github.com/zer0Kerbal/OhScrap/releases/latest
+[MOD:curseforge]:      https://www.curseforge.com/kerbal/ksp-mods/scrapyard
+[MOD:changelog]:       https://github.com/zer0Kerbal/OhScrap/Changelog.cfg
+
+[SHIELD:mod:latest]: https://img.shields.io/github/v/release/zer0Kerbal/OhScrap?include_prereleases?style=plastic
+[SHIELD:mod]: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/zer0Kerbal/OhScrap/master/json/mod.json
+[SHIELD:ksp]: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/zer0Kerbal/OhScrap/master/json/ksp.json
+[SHIELD:license]: https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/zer0Kerbal/OhScrap/master/json/license.json
+[LOGO:mit]: https://i.postimg.cc/bvjfsMP5/MIT-17x17.png
+[SHIELD:kspavc]:     https://img.shields.io/badge/KSP-AVC--supported-brightgreen.svg?style=plastic
+[SHIELD:spacedock]:  https://img.shields.io/badge/SpaceDock-listed-blue.svg?style=plastic
+[SHIELD:ckan]:       https://img.shields.io/badge/CKAN-Indexed-blue.svg?style=plastic
+[SHIELD:github]:     https://img.shields.io/badge/Github-Indexed-blue.svg?style=plastic
+[SHIELD:curseforge]: https://img.shields.io/badge/CurseForge-listed-blue.svg?style=plastic
+[SHIELD:avcvalid]:    https://github.com/zer0Kerbal/ScarpYard/workflows/Validate%20AVC%20.version%20files/badge.svg
+
+[LINK:magico13]:       https://forum.kerbalspaceprogram.com/index.php?/profile/73338-magico13/
+[LINK:severedsolo]:    https://forum.kerbalspaceprogram.com/index.php?/profile/80345-severedsolo/
+[LINK:zer0Kerbal]:     https://forum.kerbalspaceprogram.com/index.php?/profile/190933-zer0kerbal/
+[LINK:linuxgurugamer]: https://forum.kerbalspaceprogram.com/index.php?/profile/129964-linuxgurugamer/
+
+[IMG:hero:0]: https://i.imgur.com/2V0F5DT.png
+[IMG:hero:1]: https://i.imgur.com/eWRLoBR.jpg
+[IMG:hero:2]: https://i.imgur.com/EyWm9e9.jpg
 <!--
 this file: GPLv2
 zer0Kerbal-->
