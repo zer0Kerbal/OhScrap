@@ -218,7 +218,7 @@ namespace OhScrap
             {
                 nextFailureCheck = Planetarium.GetUniversalTime() + timeBetweenChecksRocketsDeepSpace;
                 failureMode = "Deep Space";
-                sampleTime = "3 years";
+                sampleTime = "30 days";
             }
             switch(failureMode)
             {
@@ -229,10 +229,10 @@ namespace OhScrap
                     exponent = 900 / timeBetweenChecksPlanes;
                     break;
                 case "Local Space":
-                    exponent = FlightGlobals.GetHomeBody().solarDayLength *7 / timeBetweenChecksRocketsLocalSpace;
+                    exponent = 25200 / timeBetweenChecksRocketsLocalSpace;
                     break;
                 case "Deep Space":
-                    exponent = FlightGlobals.GetHomeBody().orbit.period*3 / timeBetweenChecksRocketsDeepSpace;
+                    exponent = 648000 / timeBetweenChecksRocketsDeepSpace;
                     break;
             }
             preparedNumber = vesselSafetyRating * 0.01;
