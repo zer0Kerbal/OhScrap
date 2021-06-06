@@ -2,15 +2,16 @@
 Oy Scrap! OHS) (formerly UPFM)
 created: 01 Oct 19
 updated: 2020 03 12 -->
-<!-- # KerbGuise Experimental engineering (KGEx)
-#### Brings you: -->
+
+####  *KerbGuise Experimental (KGEx) Brings you:* 
+
 <!-- Download on SpaceDock or Github or Curseforge. Also available on CKAN. -->
 
 # Oy Scrap! (OHS) (formerly UPFM)
 ![Mod Version][SHIELD:mod:latest] ![KSP version][SHIELD:ksp] ![KSP-AVC][SHIELD:kspavc] ![License MIT][SHIELD:license] ![LOGO:mit]  
 ![SpaceDock][SHIELD:spacedock] ![CKAN][SHIELD:ckan] ![GitHub][SHIELD:github] ![Curseforge][SHIELD:curseforge]  
 ![Validate AVC .version files][SHIELD:avcvalid]   
-  
+
 > Poor Val, she's not having a good day. There she was on her way back from orbit, and this happened: 
 >
 > ![A bad day for Val][IMG:hero:0]  
