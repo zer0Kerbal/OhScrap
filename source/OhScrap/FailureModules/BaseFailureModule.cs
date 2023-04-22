@@ -236,7 +236,7 @@ namespace OhScrap
             if (HighLogic.LoadedScene == GameScenes.FLIGHT && isSRB && FailureAllowed() && Utils.instance._randomiser.NextDouble() < chanceOfFailure) InvokeRepeating("FailPart", 0.01f, 0.01f);
         }
 
-        public void OnUpdate()
+        public override void OnUpdate()
         {
             Events["ForceFailure"].guiName = Localizer.Format("#OHS-BFM-ForceFailure", moduleName);
             Events["ForcedRepair"].guiName = Localizer.Format("#OHS-BFM-ForceRepair", moduleName);
