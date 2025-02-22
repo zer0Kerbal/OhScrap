@@ -54,7 +54,7 @@
     <Reference Include="$(K112)..\..\GameData\ScrapYard\Plugins\ScrapYard.dll">
       <Private>False</Private>
     </Reference>
-    <Reference Include="System" />
+    <Reference Include="System">
     </Reference>
   </ItemGroup>
   <ItemGroup>

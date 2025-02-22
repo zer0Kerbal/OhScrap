@@ -38,7 +38,7 @@ namespace OhScrap
 
         //These hold all "stats" for parts that have already been generated (to stop them getting different results each time)
         public Dictionary<uint, int> generations = new Dictionary<uint, int>();
-        public List<uint> testedParts = new List<uint>();
+        public HashSet<uint> testedParts = new HashSet<uint>();
         public int vesselSafetyRating = -1;
         double nextFailureCheck = 0;
         Part worstPart;
