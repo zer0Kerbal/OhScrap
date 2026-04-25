@@ -83,6 +83,7 @@
     <Compile Include="Logger.cs" />
     <Compile Include="ModWrapper.cs" />
     <Compile Include="UPFMData.cs" />
+    <Compile Include="InventoryMetadata.cs" />
     <Compile Include="UPFMSettings.cs" />
     <Compile Include="UPFMUtils.cs" />
     <Compile Include="StageRecoveryWrapper.cs" />
@@ -102,15 +103,11 @@
     <Compile Include="FailureModules\ParachuteFailureModule.cs" />
     <Compile Include="FailureModules\RCSFailureModule.cs" />
     <Compile Include="FailureModules\ReactionWheelFailureModule.cs" />
+    <Compile Include="FailureModules\RealChuteFailureModule.cs" />
     <Compile Include="FailureModules\SolarPanelFailureModule.cs" />
     <Compile Include="FailureModules\TankFailureModule.cs" />
     <Compile Include="FailureModules\SRBFailureModule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\AssemblyVersion.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AssemblyVersion.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Version.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -118,10 +115,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Properties\AssemblyVersion.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>AssemblyVersion.cs</LastGenOutput>
-    </Content>
     <Content Include="Properties\Version.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Version.cs</LastGenOutput>
@@ -131,16 +124,13 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v16.0\TextTemplating\Microsoft.TextTemplating.targets" />
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v16.0\TextTemplating\Microsoft.TextTemplating.targets" Condition="Exists('$(MSBuildExtensionsPath)\Microsoft\VisualStudio\v16.0\TextTemplating\Microsoft.TextTemplating.targets')" />
   <PropertyGroup>
     <PreBuildEvent>
-    cmd /d C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\texttransform.exe "$(ProjectDir)Version.tt"
-
-    cmd /d C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\texttransform.exe "$(ProjectDir)AssemblyFileVersion.tt"
-    <!-- "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\IDE\texttransform.exe"  --><!-- "$(ProjectDir)Properties\AssemblyFileVersion.tt" --></PreBuildEvent>
+if exist "$(DevEnvDir)TextTransform.exe" if exist "$(ProjectDir)Properties\Version.tt" "$(DevEnvDir)TextTransform.exe" "$(ProjectDir)Properties\Version.tt"</PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>start /D $(ProjectDir)..\  /WAIT _deploy.bat  $(TargetDir) $(TargetFileName)
-if $(ConfigurationName) == Release start /D $(ProjectDir)..\   /WAIT _buildRelease.bat $(TargetDir) $(TargetFileName)</PostBuildEvent>
+    <PostBuildEvent>if exist "$(ProjectDir)..\_deploy.bat" call "$(ProjectDir)..\_deploy.bat" "$(TargetDir)" "$(TargetFileName)"
+if "$(ConfigurationName)" == "Release" if exist "$(ProjectDir)..\_buildRelease.bat" call "$(ProjectDir)..\_buildRelease.bat" "$(TargetDir)" "$(TargetFileName)"</PostBuildEvent>
   </PropertyGroup>
 </Project>

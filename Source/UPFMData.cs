@@ -49,7 +49,7 @@ namespace OhScrap
                 string s = cn.GetValue("ID");
                 uint.TryParse(s, out uint u);
                 if (int.TryParse(cn.GetValue("Generation"), out int g)) UPFMUtils.instance.generations.Add(u, g);
-                if (bool.TryParse(cn.GetValue("Tested"), out bool b) == true) UPFMUtils.instance.testedParts.Add(u);
+                if (bool.TryParse(cn.GetValue("Tested"), out bool b) && b) UPFMUtils.instance.testedParts.Add(u);
             }
             nodes = temp.GetNodes("FAILURE");
             if (nodes.Count() == 0) return;

@@ -30,8 +30,8 @@ namespace OhScrap
         public float baseChanceOfFailure = 0.1f;
         [KSPField(isPersistant = true, guiActive = false)]
         public int numberOfRepairs = 0;
-        [KSPField(isPersistant = false, guiActive = false, guiName = "BaseFailure", guiActiveEditor = false, guiUnits = "%")]
-        public int displayChance = 100;
+        [KSPField(isPersistant = false, guiActive = false, guiName = "BaseFailure", guiActiveEditor = false)]
+        public string displayChance = "100.00%";
         [KSPField(isPersistant = false, guiActive = true, guiName = "Base Safety Rating", guiActiveEditor = true)]
         public int safetyRating = -1;
         public ModuleUPFMEvents OhScrap;
@@ -79,6 +79,7 @@ namespace OhScrap
             if (HighLogic.LoadedSceneIsEditor) hasFailed = false;
             //find the ScrapYard Module straight away, as we can't do any calculations without it.
             SYP = part.FindModuleImplementing<ModuleSYPartTracker>();
+            OhScrap = part.FindModuleImplementing<ModuleUPFMEvents>();
             chanceOfFailure = baseChanceOfFailure;
             //overrides are defined in each failue Module - stuff that the generic module can't handle.
             Overrides();
@@ -87,9 +88,8 @@ namespace OhScrap
             ScrapYardEvents.OnSYInventoryAppliedToVessel.Add(OnSYInventoryAppliedToVessel);
             ScrapYardEvents.OnSYInventoryAppliedToPart.Add(OnSYInventoryAppliedToPart);
             ScrapYardEvents.OnSYInventoryChanged.Add(OnSYInventoryChanged);
-            OhScrap = part.FindModuleImplementing<ModuleUPFMEvents>();
             //refresh part if we are in the editor and parts never been used before (just returns if not)
-            OhScrap.RefreshPart();
+            if (OhScrap != null) OhScrap.RefreshPart();
             //Initialise the Failure Module.
             GameEvents.onLaunch.Add(OnLaunch);
             if (launched || HighLogic.LoadedSceneIsEditor) Initialise();
@@ -153,12 +153,30 @@ namespace OhScrap
                 Events["ForceFailure"].guiName = moduleName + "Force Failure (DEBUG)";
                 Events["ForcedRepair"].guiName = moduleName + "Force Repair (DEBUG)";
 #endif
+                if (part == null)
+                {
+                    ready = false;
+                    return;
+                }
+
+                if (SYP == null)
+                {
+                    SYP = part.FindModuleImplementing<ModuleSYPartTracker>();
+                }
+                if (OhScrap == null)
+                {
+                    OhScrap = part.FindModuleImplementing<ModuleUPFMEvents>();
+                }
+
                 //ScrapYard isn't always ready when OhScrap is so we check to see if it's returning an ID yet. If not, return and wait until it does.
-                if (SYP.ID == 0 || !UPFMUtils.instance.ready) ready = false;
+                if (SYP == null || OhScrap == null || UPFMUtils.instance == null || SYP.ID == 0 || !UPFMUtils.instance.ready) ready = false;
                 else ready = true;
                 if (!ready) return;
-                if (UPFMUtils.instance.testedParts.Contains(SYP.ID))
-                    part.FindModuleImplementing<ModuleUPFMEvents>().tested = true;
+                if (SYP.TimesRecovered > 0 && !UPFMUtils.instance.testedParts.Contains(SYP.ID))
+                {
+                    UPFMUtils.instance.testedParts.Add(SYP.ID);
+                }
+                OhScrap.tested = UPFMUtils.instance.testedParts.Contains(SYP.ID);
                 OhScrap.generation = UPFMUtils.instance.GetGeneration(SYP.ID, part);
                 chanceOfFailure = baseChanceOfFailure;
                 if (SYP.TimesRecovered == 0 || !UPFMUtils.instance.testedParts.Contains(SYP.ID))
@@ -179,7 +197,7 @@ namespace OhScrap
                     OhScrap.Events["ToggleHighlight"].active = true;
                 }
 
-                displayChance = (int) (chanceOfFailure * 100);
+                displayChance = FormatChance(chanceOfFailure);
                 //this compares the actual failure rate to the safety threshold and returns a safety calc based on how far below the safety threshold the actual failure rate is.
                 //This is what the player actually sees when determining if a part is "failing" or not.
                 if (!isSRB)
@@ -194,7 +212,7 @@ namespace OhScrap
                     else if (chanceOfFailure < baseChanceOfFailure / 10 * 8) safetyRating = 3;
                     else if (chanceOfFailure < baseChanceOfFailure / 10 * 9) safetyRating = 2;
                     else safetyRating = 1;
-                    if (hasFailed) part.FindModuleImplementing<ModuleUPFMEvents>().SetFailedHighlight();
+                    if (hasFailed) OhScrap.SetFailedHighlight();
                     ready = true;
                 }
                 else
@@ -218,6 +236,22 @@ namespace OhScrap
             if (generation > 10) generation = 10;
             if (isSRB) return baseChanceOfFailure / generation; 
             return baseChanceOfFailure+0.01f - (generation * (baseChanceOfFailure / 10));
+        }
+
+        private string FormatChance(float chance)
+        {
+            if (chance <= 0)
+            {
+                return "0%";
+            }
+
+            float percent = chance * 100;
+            if (percent < 0.01f)
+            {
+                return percent.ToString("0.####") + "%";
+            }
+
+            return percent.ToString("0.##") + "%";
         }
 
         //These methods all are overriden by the failure modules
