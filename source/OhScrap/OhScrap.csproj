@@ -72,7 +72,8 @@
     <Compile Include="FailureModules\ParachuteFailureModule.cs" />
     <Compile Include="FailureModules\RCSFailureModule.cs" />
     <Compile Include="FailureModules\ReactionWheelFailureModule.cs" />
-    <Compile Include="FailureModules\RTAntennaFailureModule.cs" />
+     <Compile Include="FailureModules\RealChuteFailureModule.cs" />
+     <Compile Include="FailureModules\RTAntennaFailureModule.cs" />
     <Compile Include="FailureModules\SolarPanelFailureModule.cs" />
     <Compile Include="FailureModules\SRBFailureModule.cs" />
     <Compile Include="FailureModules\TankFailureModule.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="Dependencies\StageRecoveryWrapper.cs" />
     <Compile Include="Data.cs" />
     <Compile Include="Settings.cs" />
+    <Compile Include="InventoryMetadata.cs" />
     <Compile Include="Utils.cs" />
     <Compile Include="Properties\Version.cs">
       <AutoGen>True</AutoGen>
