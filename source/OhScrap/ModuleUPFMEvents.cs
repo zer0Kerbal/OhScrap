@@ -35,7 +35,7 @@ namespace OhScrap
         {
             SYP = part.FindModuleImplementing<ModuleSYPartTracker>();
 #if DEBUG
-            Debug.Log("[UPFM]: UPFMEvents.Start" + SYP.ID);
+            Debug.Log("[UPFM]: UPFMEvents.Start" + (SYP == null ? " no ScrapYard tracker" : SYP.ID.ToString()));
 #endif
         }
         //forces ScrapYard to refresh the part if it's needed.
@@ -43,6 +43,7 @@ namespace OhScrap
         {
             if (!HighLogic.LoadedSceneIsEditor || refreshed) return;
             SYP = part.FindModuleImplementing<ModuleSYPartTracker>();
+            if (SYP == null) return;
             Debug.Log("[OhScrap]: Attempting to refresh part " + SYP.ID);
             if (SYP.TimesRecovered == 0)
             {
@@ -62,7 +63,7 @@ namespace OhScrap
             {
                 doNotRecover = true;
                 //ScreenMessages.PostScreenMessage(part.partInfo.title + " will not be recovered");
-                ScreenMessages.PostScreenMessage(Localizer.Format("#OHS-UPFME-recovered", part.partInfo.title));
+                ScreenMessages.PostScreenMessage(Localizer.Format("#OHS-UPFME-notrecovered", part.partInfo.title));
             }
             else
             {
@@ -158,6 +159,7 @@ namespace OhScrap
                             continue;
                         }
                     }
+                    
                     else continue;
                 }
             }
