@@ -41,7 +41,7 @@ namespace OhScrap
         [KSPField(isPersistant = true, guiActive = false)]
         public int numberOfRepairs = 0;
         //[KSPField(isPersistant = false, guiActive = false, guiName = "BaseFailure", guiActiveEditor = false, guiUnits = "%")]
-        [KSPField(isPersistant = false, guiActive = false, guiName = "BaseFailure", guiActiveEditor = false)]
+        [KSPField(isPersistant = false, guiActive = false, guiName = "#OHS-BFM-displayChance", guiActiveEditor = false)]
         public string displayChance = "100.00%";
         //[KSPField(isPersistant = false, guiActive = true, guiName = "Base Safety Rating", guiActiveEditor = true)]
         [KSPField(isPersistant = false, guiActive = true, guiName = "#OHS-BFM-safetyRating", guiActiveEditor = true)]
